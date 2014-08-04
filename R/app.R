@@ -181,6 +181,19 @@ shinyAppDir <- function(appDir, options=list()) {
 }
 
 #' @rdname shinyApp
+#' @param appFile Path to a file that returns a \code{shiny.appobj} object.
+#' @export
+shinyAppFile <- function(appFile, options=list()) {
+  # Run the app file
+  result <- sourceUTF8(appFile, local = new.env(parent = globalenv()))$value
+
+  if (!is.shiny.appobj(result))
+    stop("File ", appFile, " did not return a shiny.appobj.")
+
+  result
+}
+
+#' @rdname shinyApp
 #' @param x Object to convert to a Shiny app.
 #' @export
 as.shiny.appobj <- function(x) {
@@ -202,7 +215,16 @@ as.shiny.appobj.list <- function(x) {
 #' @rdname shinyApp
 #' @export
 as.shiny.appobj.character <- function(x) {
-  shinyAppDir(x)
+  if (isTRUE(file.info(x)$isdir))
+    shinyAppDir(x)
+  else
+    shinyAppFile(x)
+}
+
+#' @rdname shinyApp
+#' @export
+is.shiny.appobj <- function(x) {
+  inherits(x, "shiny.appobj")
 }
 
 #' @rdname shinyApp

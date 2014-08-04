@@ -5,14 +5,18 @@
 \alias{as.shiny.appobj.list}
 \alias{as.shiny.appobj.shiny.appobj}
 \alias{as.tags.shiny.appobj}
+\alias{is.shiny.appobj}
 \alias{print.shiny.appobj}
 \alias{shinyApp}
 \alias{shinyAppDir}
+\alias{shinyAppFile}
 \title{Create a Shiny app object}
 \usage{
 shinyApp(ui, server, onStart = NULL, options = list(), uiPattern = "/")
 
 shinyAppDir(appDir, options = list())
+
+shinyAppFile(appFile, options = list())
 
 as.shiny.appobj(x)
 
@@ -21,6 +25,8 @@ as.shiny.appobj(x)
 \method{as.shiny.appobj}{list}(x)
 
 \method{as.shiny.appobj}{character}(x)
+
+is.shiny.appobj(x)
 
 \method{print}{shiny.appobj}(x, ...)
 
@@ -47,6 +53,8 @@ expression in order for the match to be considered successful.}
 
 \item{appDir}{Path to directory that contains a Shiny app (i.e. a server.R
 file and either ui.R or www/index.html)}
+
+\item{appFile}{Path to a file that returns a \code{shiny.appobj} object.}
 
 \item{x}{Object to convert to a Shiny app.}
 
