@@ -5,9 +5,13 @@ shinyUI(fluidPage(
   titlePanel("Shine On"),
   
   sidebarLayout(
-    sidebarPanel("sidebar panel"),
+    sidebarPanel(
+    selectInput("gifs", "GIFs", c("1"="1", "2"="2"),
+                             multiple = FALSE, selected = 1)
+                 ),
     mainPanel(
-      img(src="ambiguity_twitter.gif")
+      textOutput("images"),
+      imageOutput("pics")
     )
   )
 ))
