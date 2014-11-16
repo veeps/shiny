@@ -4,10 +4,10 @@ shinyUI(fluidPage(
   sidebarPanel(
     checkboxGroupInput("variable", "Variable:", 
                        c("Cut" = "cut", "Color" = "color", "Depth" = "depth", "Clarity" = "clarity"),
-                       selected = c("Cut"))
+                       selected = NULL)
     ),
   mainPanel(
-    plotOutput("glm"))
+    plotOutput("glm") 
   ))
+)
 
-?checkboxGroupInput
